@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Security Gate 🎄</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0e27;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated gradient background */
+        .bg-gradient {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0a0e27, #1a1f4e, #2d1b4e, #0a0e27);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Northern lights effect */
+        .aurora {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0.3;
+            background: radial-gradient(ellipse at top, #4ade8044, transparent 50%),
+                        radial-gradient(ellipse at bottom, #3b82f644, transparent 50%);
+            animation: aurora 20s ease-in-out infinite;
+        }
+
+        @keyframes aurora {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-50px) scale(1.1); opacity: 0.5; }
+        }
+
+        /* Enhanced snowflakes with varying sizes */
+        .snowflake {
+            position: fixed;
+            color: white;
+            animation: fall linear infinite;
+            pointer-events: none;
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #ffd700, transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Decorative elements around the gate */
+        .gate-wrapper {
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .ornament {
+            position: absolute;
+            font-size: 50px;
+            animation: swing 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        .ornament:nth-child(1) { top: -40px; left: -60px; animation-delay: 0s; }
+        .ornament:nth-child(2) { top: -40px; right: -60px; animation-delay: 0.5s; }
+        .ornament:nth-child(3) { bottom: -40px; left: 50px; animation-delay: 1s; }
+        .ornament:nth-child(4) { bottom: -40px; right: 50px; animation-delay: 1.5s; }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* Gate Structure */
+        .gate {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 40px;
+            padding: 60px 50px;
+            max-width: 650px;
+            width: 100%;
+            box-shadow: 
+                0 30px 90px rgba(255, 215, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 0 100px rgba(138, 43, 226, 0.3);
+            animation: gateFloat 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .gate::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateY(-100%); }
+            100% { transform: rotate(45deg) translateY(100%); }
+        }
+
+        @keyframes gateFloat {
+            0%, 100% { transform: translateY(0) rotateX(0deg); }
+            50% { transform: translateY(-10px) rotateX(2deg); }
+        }
+
+        /* Decorative corner stars */
+        .corner-star {
+            position: absolute;
+            font-size: 30px;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+
+        .corner-star:nth-child(1) { top: 20px; left: 20px; }
+        .corner-star:nth-child(2) { top: 20px; right: 20px; animation-delay: 0.5s; }
+        .corner-star:nth-child(3) { bottom: 20px; left: 20px; animation-delay: 1s; }
+        .corner-star:nth-child(4) { bottom: 20px; right: 20px; animation-delay: 1.5s; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        /* Guards Section */
+        .guards-section {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .guards-title {
+            text-align: center;
+            color: #ffd700;
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.8),
+                0 0 40px rgba(255, 215, 0, 0.4);
+            animation: titleGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.4); }
+            50% { text-shadow: 0 0 30px rgba(255, 215, 0, 1), 0 0 60px rgba(255, 215, 0, 0.6); }
+        }
+
+        .guards {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-bottom: 20px;
+        }
+
+        .guard-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .guard {
+            font-size: 120px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5));
+            animation: guardFloat 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        .guard-container:nth-child(1) .guard { animation-delay: 0s; }
+        .guard-container:nth-child(2) .guard { animation-delay: 1.5s; }
+
+        @keyframes guardFloat {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .guard:hover {
+            transform: scale(1.3) rotate(15deg) translateY(-20px);
+            filter: drop-shadow(0 20px 40px rgba(255, 215, 0, 0.6));
+        }
+
+        .guard:active {
+            transform: scale(1.1) rotate(-10deg);
+        }
+
+        .guard-label {
+            font-family: 'Mountains of Christmas', cursive;
+            color: #fff;
+            font-size: 1.2em;
+            margin-top: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            opacity: 0.8;
+        }
+
+        /* Wreath decoration */
+        .wreath {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 100px;
+            animation: wreathSpin 20s linear infinite;
+            filter: drop-shadow(0 10px 30px rgba(34, 139, 34, 0.6));
+        }
+
+        @keyframes wreathSpin {
+            0% { transform: translateX(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg); }
+        }
+
+        /* Question Container */
+        .question {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 250, 240, 0.95));
+            border-radius: 30px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(20px);
+            border: 3px solid rgba(255, 215, 0, 0.4);
+        }
+
+        .question::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            animation: questionShine 3s ease-in-out infinite;
+        }
+
+        @keyframes questionShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .question h2 {
+            color: #d32f2f;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            font-family: 'Mountains of Christmas', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .question p {
+            color: #2c3e50;
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 18px 20px;
+            border: 3px solid transparent;
+            border-radius: 20px;
+            font-size: 1.1em;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #4ade80, #3b82f6, #8b5cf6) border-box;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            z-index: 1;
+        }
+
+        input:focus {
+            outline: none;
+            transform: translateY(-2px);
+            box-shadow: 
+                0 10px 30px rgba(59, 130, 246, 0.3),
+                0 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #dc2626, #f43f5e, #ec4899);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.3em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-family: 'Mountains of Christmas', cursive;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #f43f5e, #ec4899, #d946ef);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(244, 63, 94, 0.5);
+        }
+
+        button:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        /* Feedback messages */
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.15em;
+            animation: feedbackAppear 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            z-index: 1;
+        }
+
+        .feedback.error {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            color: #991b1b;
+            border: 3px solid #f87171;
+            box-shadow: 0 10px 30px rgba(248, 113, 113, 0.3);
+        }
+
+        .feedback.success {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            color: #065f46;
+            border: 3px solid #34d399;
+            box-shadow: 0 10px 30px rgba(52, 211, 153, 0.3);
+        }
+
+        @keyframes feedbackAppear {
+            from { opacity: 0; transform: scale(0.8) translateY(-20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Hidden class */
+        .hidden {
+            display: none;
+        }
+
+        /* Christmas lights at the very top */
+        .lights-string {
+            position: absolute;
+            top: -30px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 5;
+        }
+
+        .light-bulb {
+            width: 20px;
+            height: 30px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
+            animation: bulbGlow 1.5s infinite;
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        .light-bulb:nth-child(4n+1) {
+            background: #ef4444;
+            color: #ef4444;
+            animation-delay: 0s;
+        }
+
+        .light-bulb:nth-child(4n+2) {
+            background: #3b82f6;
+            color: #3b82f6;
+            animation-delay: 0.3s;
+        }
+
+        .light-bulb:nth-child(4n+3) {
+            background: #fbbf24;
+            color: #fbbf24;
+            animation-delay: 0.6s;
+        }
+
+        .light-bulb:nth-child(4n+4) {
+            background: #22c55e;
+            color: #22c55e;
+            animation-delay: 0.9s;
+        }
+
+        @keyframes bulbGlow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.9); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .gate {
+                padding: 40px 30px;
+            }
+
+            .guards {
+                gap: 40px;
+            }
+
+            .guard {
+                font-size: 90px;
+            }
+
+            .ornament {
+                font-size: 35px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background layers -->
+    <div class="bg-gradient"></div>
+    <div class="aurora"></div>
+
+    <!-- Snowflakes -->
+    <div id="snowflakes"></div>
+    
+    <!-- Particles -->
+    <div id="particles"></div>
+
+    <div class="container">
+        <div class="gate-wrapper">
+            <!-- Decorative ornaments -->
+            <div class="ornament">🎄</div>
+            <div class="ornament">⭐</div>
+            <div class="ornament">🎁</div>
+            <div class="ornament">🔔</div>
+
+            <div class="gate">
+                <!-- Corner stars -->
+                <div class="corner-star">✨</div>
+                <div class="corner-star">✨</div>
+                <div class="corner-star">✨</div>
+                <div class="corner-star">✨</div>
+
+                <!-- Christmas lights -->
+                <div class="lights-string">
+                    <div class="light-bulb"></div>
+                    <div class="light-bulb"></div>
+                    <div class="light-bulb"></div>
+                    <div class="light-bulb"></div>
+                    <div class="light-bulb"></div>
+                    <div class="light-bulb"></div>
+                    <div class="light-bulb"></div>
+                    <div class="light-bulb"></div>
+                </div>
+
+                <!-- Wreath -->
+                <div class="wreath">🎄</div>
+
+                <!-- Guards Section -->
+                <div class="guards-section">
+                    <h1 class="guards-title">🎅 Security Checkpoint 🎅</h1>
+                    <div class="guards">
+                        <div class="guard-container">
+                            <div class="guard" title="Click me!">🐱</div>
+                            <div class="guard-label">Captain Whiskers</div>
+                        </div>
+                        <div class="guard-container">
+                            <div class="guard" title="Click me!">🐻</div>
+                            <div class="guard-label">Sergeant Paws</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 1 -->
+                <div class="question" id="question1">
+                    <h2>🎅 Security Check #1</h2>
+                    <p>Are you Cricel Lampa?</p>
+                    <div class="input-wrapper">
+                        <input type="text" id="nameInput" placeholder="Type your answer here...">
+                    </div>
+                    <button onclick="checkName()">✨ Submit Answer ✨</button>
+                    <div id="nameFeedback"></div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question hidden" id="question2">
+                    <h2>🎄 Security Check #2</h2>
+                    <p>Okay then, what's 5 + 5?</p>
+                    <div class="input-wrapper">
+                        <input type="text" id="mathInput" placeholder="Type your answer here...">
+                    </div>
+                    <button onclick="checkMath()">🎁 Submit Answer 🎁</button>
+                    <div id="mathFeedback"></div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question hidden" id="question3">
+                    <h2>⭐ Final Security Check</h2>
+                    <p>Now, who does Bhavya LOVE to hang out with?</p>
+                    <div class="input-wrapper">
+                        <input type="text" id="friendInput" placeholder="Type your answer here...">
+                    </div>
+                    <button onclick="checkFriend()">🎊 Submit Answer 🎊</button>
+                    <div id="friendFeedback"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create enhanced snowflakes
+        function createSnowflakes() {
+            const snowflakesContainer = document.getElementById('snowflakes');
+            const snowflakes = ['❄', '❅', '❆', '🌨'];
+            
+            for (let i = 0; i < 80; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 5 + 3) + 's';
+                snowflake.style.animationDelay = Math.random() * 8 + 's';
+                snowflake.style.fontSize = (Math.random() * 15 + 12) + 'px';
+                snowflake.style.opacity = Math.random() * 0.7 + 0.3;
+                snowflakesContainer.appendChild(snowflake);
+            }
+        }
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createSnowflakes();
+        createParticles();
+
+        // Question 1: Name check
+        function checkName() {
+            const input = document.getElementById('nameInput').value.toLowerCase().trim();
+            const feedback = document.getElementById('nameFeedback');
+            
+            if (input.includes('yes') || input.includes('cricel') || input.includes('i am') || input.includes('yep') || input.includes('yeah')) {
+                feedback.className = 'feedback success';
+                feedback.innerHTML = '🎉 Welcome Cricel! The guards are pleased...<br>Proceeding to next checkpoint! ✨';
+                
+                setTimeout(() => {
+                    document.getElementById('question1').classList.add('hidden');
+                    document.getElementById('question2').classList.remove('hidden');
+                }, 2000);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = '❌ Hmm, that doesn\'t sound right. The guards are suspicious!';
+            }
+        }
+
+        // Question 2: Math check
+        function checkMath() {
+            const input = document.getElementById('mathInput').value.trim();
+            const feedback = document.getElementById('mathFeedback');
+            
+            if (input === '10') {
+                feedback.className = 'feedback success';
+                feedback.innerHTML = '✅ Perfect! You\'re brilliant! 🎓<br>The guards nod approvingly...';
+                
+                setTimeout(() => {
+                    document.getElementById('question2').classList.add('hidden');
+                    document.getElementById('question3').classList.remove('hidden');
+                }, 2000);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = '😅 Aww come on, try again! You can do this! 💪';
+            }
+        }
+
+        // Question 3: Friend check
+        function checkFriend() {
+            const input = document.getElementById('friendInput').value.toLowerCase().trim();
+            const feedback = document.getElementById('friendFeedback');
+            
+            if (input.includes('cricel') || input.includes('me')) {
+                feedback.className = 'feedback success';
+                feedback.innerHTML = '🎊 CORRECT! You know Bhavya well! 💖<br>The magical gate is opening... ✨🚪';
+                
+                setTimeout(() => {
+                    alert('🎄✨ GATE UNLOCKED! ✨🎄\n\n🎅 The Christmas Room awaits you!\n🎁 Prepare for magic and wonder!\n\n(This is where the next page will load)');
+                    // window.location.href = 'christmas-room.html';
+                }, 2500);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = '💭 Think carefully... who does Bhavya really love hanging out with? 🤔';
+            }
+        }
+
+        // Enter key support
+        document.getElementById('nameInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkName();
+        });
+
+        document.getElementById('mathInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkMath();
+        });
+
+        document.getElementById('friendInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkFriend();
+        });
+
+        // Guard interactions with more personality
+        const guardMessages = [
+            ['🐱 Meow! I believe in you, human!', '🐱 *purrs encouragingly*', '🐱 You got this! Keep trying!'],
+            ['🐻 Rawr! Stay strong, adventurer!', '🐻 *gives a bear hug*', '🐻 The Christmas spirit is with you!']
+        ];
+
+        document.querySelectorAll('.guard').forEach((guard, index) => {
+            guard.addEventListener('click', function() {
+                const messages = guardMessages[index];
+                const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+                
+                // Create temporary floating message
+                const msg = document.createElement('div');
+                msg.textContent = randomMsg;
+                msg.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: linear-gradient(135deg, rgba(255, 215, 0, 0.95), rgba(255, 165, 0, 0.95));
+                    color: white;
+                    padding: 20px 40px;
+                    border-radius: 20px;
+                    font-size: 1.5em;
+                    font-family: 'Mountains of Christmas', cursive;
+                    z-index: 10000;
+                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+                    animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                `;
+                document.body.appendChild(msg);
+                
+                setTimeout(() => {
+                    msg.style.animation = 'popOut 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards';
+                    setTimeout(() => msg.remove(), 500);
+                }, 1500);
+            });
+        });
+
+        // Add pop animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes popIn {
+                from { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+                to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            }
+            @keyframes popOut {
+                from { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+                to { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
