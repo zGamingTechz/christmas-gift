@@ -12,8 +12,8 @@ const easterEggs = {
 const introScreen = document.getElementById("introScreen");
 const music = document.getElementById("christmasMusic");
 
-introScreen.addEventListener("click", () => {
-    music.play();
+introScreen.addEventListener("click", async () => {
+    await music.play();
 });
 
 // Create snowflakes

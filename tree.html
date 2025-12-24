@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <audio id="christmasMusic" src="bg.mp3" loop></audio>
+    <audio id="christmasMusic" preload="auto" loop>
+        <source src="bg.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="snow-container"></div>
     <div class="stars"></div>
@@ -15,7 +17,7 @@
     <!-- Intro Screen -->
     <div class="intro-screen active" id="introScreen">
         <div class="intro-content">
-            <h1 class="glowing-text">A Special Gift Awaits...</h1>
+            <h1 class="glowing-text">A Special Gift Awaits....</h1>
             <p class="subtitle">Click anywhere to begin your Christmas journey</p>
             <div class="sparkles"></div>
         </div>
