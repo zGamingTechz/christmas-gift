@@ -587,7 +587,7 @@
                 <!-- Question 3 -->
                 <div class="question hidden" id="question3">
                     <h2>⭐ Final Security Check</h2>
-                    <p>Now, who does Bhavya LOVE to hang out with?</p>
+                    <p>Now, what brand is your Motherboard?</p>
                     <div class="input-wrapper">
                         <input type="text" id="friendInput" placeholder="Type your answer here...">
                     </div>
@@ -678,9 +678,9 @@
             const input = document.getElementById('friendInput').value.toLowerCase().trim();
             const feedback = document.getElementById('friendFeedback');
             
-            if (input.includes('cricel') || input.includes('me')) {
+            if (input.includes('msi')) {
                 feedback.className = 'feedback success';
-                feedback.innerHTML = '🎊 CORRECT! You know Bhavya well! 💖<br>The magical gate is opening... ✨🚪';
+                feedback.innerHTML = '🎊 CORRECT! You know your hardware well! 💖<br>The magical gate is opening... ✨🚪';
                 
                 setTimeout(() => {
                     alert('🎄✨ GATE UNLOCKED! ✨🎄\n\n🎅 The Christmas Room awaits you!\n🎁 Prepare for magic and wonder!');
@@ -688,7 +688,7 @@
                 }, 2500);
             } else {
                 feedback.className = 'feedback error';
-                feedback.textContent = '💭 Think carefully... who does Bhavya really love hanging out with? 🤔';
+                feedback.textContent = '💭 Think carefully... you can go check 🤔';
             }
         }
 
