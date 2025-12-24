@@ -398,7 +398,7 @@ function initScratchCard() {
             setTimeout(() => {
                 canvas.style.display = 'none';
                 createConfetti();
-                showMessage('🎉 Gift Revealed! 🎉');
+                showMessage('Tadaa 🎉');
             }, 800);
         }
     }
