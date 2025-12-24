@@ -9,6 +9,13 @@ const easterEggs = {
     reindeer: { emoji: '🦌', text: 'Look! A reindeer! Maybe Rudolph\'s cousin?' }
 };
 
+const introScreen = document.getElementById("introScreen");
+const music = document.getElementById("christmasMusic");
+
+introScreen.addEventListener("click", () => {
+    music.play();
+});
+
 // Create snowflakes
 function createSnow() {
     const snowContainer = document.querySelector('.snow-container');
